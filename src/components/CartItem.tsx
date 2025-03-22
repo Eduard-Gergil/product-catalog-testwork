@@ -1,3 +1,5 @@
+import TrashIcon from "./icons/TrashIcon";
+
 interface CartItemProps {
   item: {
     id: number;
@@ -22,11 +24,15 @@ export default function CartItem({ item }: CartItemProps) {
           <p className="text-xs text-gray-500">Цена: ${item.price}</p>
         </div>
       </div>
+
       <div className="flex items-center space-x-2">
         <button className="w-8 h-8 p-0 bg-[#ffffff0f] rounded">-</button>
         <span>{item.quantity}</span>
         <button className="w-8 h-8 p-0 bg-[#ffffff0f] rounded">+</button>
+        <button className="w-8 h-8 p-0 bg-[#b7000067] rounded items-center justify-center flex">
+          <TrashIcon className=" w-6 h-6" />
+        </button>
       </div>
-    </div>
+    </div >
   );
 }
