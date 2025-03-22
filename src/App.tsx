@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <nav className="flex space-x-4 mb-4">
         <Link to="/" className="text-blue-500 hover:underline">
-          Главная
+          Каталог
         </Link>
         <Link to="/cart" className="text-blue-500 hover:underline">
           Корзина
