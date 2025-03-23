@@ -4,6 +4,7 @@ const CartPage = () => {
   return (
     // <div></div>
     <Cart />
+
   );
 }
 

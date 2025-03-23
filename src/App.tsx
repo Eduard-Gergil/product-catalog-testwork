@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router'
 import './App.css'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
@@ -9,10 +9,15 @@ function App() {
     <BrowserRouter>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+      <div className='px-4'>
+        <div className='max-w-7xl mx-auto py-12'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
+      </div>
+
     </BrowserRouter>
   )
 }

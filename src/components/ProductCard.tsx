@@ -15,7 +15,7 @@ const product = {
 
 const ProductCard = () => {
   return (
-    <div className="border rounded-lg shadow-md p-4 flex flex-col">
+    <div className="group relative rounded-lg shadow-md p-4 flex flex-col bg-black hover:pb-16 hover:-mb-16 hover:z-10">
       <img
         src={product.image}
         alt={product.title}
@@ -33,9 +33,11 @@ const ProductCard = () => {
 
       <p className="text-xl font-bold mt-2">{product.price} $</p>
 
-      <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg">
-        Добавить в корзину
-      </button>
+      <div className="hidden absolute w-full left-0 px-4 bottom-4 group-hover:block">
+        <button className="mt-2 w-full bg-gray-900 text-gray-200 px-4 py-2 rounded-lg hover:bg-[#51fa7b] hover:text-black">
+          Добавить в корзину
+        </button>
+      </div>
     </div>
   );
 }

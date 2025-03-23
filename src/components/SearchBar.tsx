@@ -1,6 +1,6 @@
 export default function SearchBar() {
   return (
-    <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 w-full max-w-md bg-white">
+    <div className="flex items-center rounded-lg px-3 py-2 w-full max-w-md bg-black">
       <svg
         className="w-5 h-5 text-gray-500"
         xmlns="http://www.w3.org/2000/svg"
@@ -13,10 +13,11 @@ export default function SearchBar() {
           clipRule="evenodd"
         />
       </svg>
+
       <input
         type="text"
         placeholder="Поиск товаров..."
-        className="w-full ml-2 focus:outline-none"
+        className="w-full ml-2 focus:outline-none bg-black"
       />
     </div>
   );
