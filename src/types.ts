@@ -10,3 +10,15 @@ export type Product = {
     count: number;
   };
 };
+
+type CartItem = Product & { quantity: number };
+
+export type CartStore = {
+  cart: CartItem[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (id: number) => void;
+  clearCart: () => void;
+  increaseQuantity: (id: number) => void;
+  decreaseQuantity: (id: number) => void;
+  setQuantity: (id: number, quantity: number) => void;
+};

@@ -1,13 +1,21 @@
-import { Product } from "../types";
+import cn from "classnames";
+import { CartStore, Product } from "../types";
 import StarIcon from "./icons/StarIcon";
 
 interface ProductCardProps {
   product: Product;
+  addToCart: CartStore["addToCart"];
+  cart: CartStore["cart"];
+  decreaseQuantity: CartStore["decreaseQuantity"];
+  increaseQuantity: CartStore["increaseQuantity"];
+  setQuantity: CartStore["setQuantity"];
+  removeFromCart: CartStore["removeFromCart"];
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, addToCart, cart, decreaseQuantity, increaseQuantity, setQuantity, removeFromCart }: ProductCardProps) => {
+  const productInCart = cart.find((item) => item.id === product.id)
   return (
-    <div className="group relative rounded-lg shadow-md p-4 flex flex-col bg-black hover:pb-16 hover:-mb-16 hover:z-10">
+    <div className={cn("group relative rounded-lg shadow-md p-4 flex flex-col bg-black hover:pb-16 hover:-mb-16 hover:z-10", { "hover:pb-28 hover:-mb-28": productInCart })}>
       <img
         src={product.image}
         alt={product.title}
@@ -26,9 +34,30 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <p className="text-xl font-bold mt-2">{product.price} $</p>
 
       <div className="hidden absolute w-full left-0 px-4 bottom-4 group-hover:block">
-        <button className="mt-2 w-full bg-gray-900 text-gray-200 px-4 py-2 rounded-lg hover:bg-[#51fa7b] hover:text-black">
-          Добавить в корзину
-        </button>
+        {productInCart ? (
+          <div>
+            <div className="mb-2">
+              <button className="w-8 h-8 p-0 bg-[#ffffff0f] rounded" onClick={() => decreaseQuantity(product.id)}>-</button>
+              <input
+                type="number"
+                min={1}
+                value={productInCart.quantity}
+                onChange={(e) => setQuantity(product.id, +e.target.value)}
+                className="w-16 h-8 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-[#51fa7b]"
+              />
+              <button className="w-8 h-8 p-0 bg-[#ffffff0f] rounded" onClick={() => increaseQuantity(product.id)}>+</button>
+            </div>
+
+            <button className="w-full bg-gray-900 text-gray-200 px-4 py-2 rounded-lg hover:bg-[#e33c3c] hover:text-black" onClick={() => removeFromCart(product.id)}>
+              Удалить из корзины
+            </button>
+          </div>
+        ) : (
+          <button className="mt-2 w-full bg-gray-900 text-gray-200 px-4 py-2 rounded-lg hover:bg-[#51fa7b] hover:text-black" onClick={() => addToCart(product)}>
+            Добавить в корзину
+          </button>
+        )}
+
       </div>
     </div>
   );
