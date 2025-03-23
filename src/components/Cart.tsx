@@ -21,9 +21,9 @@ export default function Cart() {
           <span className="text-xl">${totalPrice.toFixed(2)}</span>
         </div>
 
-        <button className="w-full bg-[#51fa7b] text-black py-2 mt-4 rounded-lg">
+        {/* <button className="w-full bg-[#51fa7b] text-black py-2 mt-4 rounded-lg">
           Оформить заказ
-        </button>
+        </button> */}
       </div>
     </div>
   );

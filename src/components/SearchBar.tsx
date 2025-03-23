@@ -1,4 +1,16 @@
+import { useEffect, useState } from "react";
+import { useDebounce } from "../hooks/useDebounce";
+import { useProductStore } from "../store/products";
+
 export default function SearchBar() {
+  const { setSearchQuery } = useProductStore()
+  const [inputValue, setInputValue] = useState("");
+  const debouncedSearchQuery = useDebounce(inputValue, 700);
+
+  useEffect(() => {
+    setSearchQuery(debouncedSearchQuery);
+  }, [debouncedSearchQuery]);
+
   return (
     <div className="flex items-center rounded-lg px-3 py-2 w-full max-w-md bg-black">
       <svg
@@ -17,6 +29,8 @@ export default function SearchBar() {
       <input
         type="text"
         placeholder="Поиск товаров..."
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         className="w-full ml-2 focus:outline-none bg-black"
       />
     </div>

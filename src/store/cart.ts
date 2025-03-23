@@ -1,6 +1,18 @@
 import { create } from "zustand";
-import { CartStore } from "../types";
+import { Product } from "../types";
 import { persist } from "zustand/middleware";
+
+type CartItem = Product & { quantity: number };
+
+export type CartStore = {
+  cart: CartItem[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (id: number) => void;
+  clearCart: () => void;
+  increaseQuantity: (id: number) => void;
+  decreaseQuantity: (id: number) => void;
+  setQuantity: (id: number, quantity: number) => void;
+};
 
 export const useCartStore = create<CartStore>()(
   persist((set) => ({
@@ -30,9 +42,9 @@ export const useCartStore = create<CartStore>()(
       set((state) => ({
         cart: state.cart
           .map((item) =>
-            item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+            item.id === id ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity } : item
           )
-          .filter((item) => item.quantity > 0),
+        // .filter((item) => item.quantity > 0),
       })),
     setQuantity: (id, quantity) =>
       set((state) => ({
