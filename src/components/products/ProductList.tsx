@@ -1,6 +1,6 @@
-import SearchBar from "../components/SearchBar";
-import { Product } from "../types";
-import Filters from "./Filters";
+import SearchBar from "../filters/SearchBar";
+import { Product } from "../../types";
+import Filters from "../filters/Filters";
 import ProductCard from "./ProductCard";
 
 interface ProductListProps {

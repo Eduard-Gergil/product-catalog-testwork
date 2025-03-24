@@ -1,4 +1,4 @@
-import { useCartStore } from "../store/cart";
+import { useCartStore } from "../../store/cart";
 import CartItem from "./CartItem";
 import cn from "classnames";
 

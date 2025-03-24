@@ -1,8 +1,8 @@
 import cn from "classnames";
-import { Product } from "../types";
-import StarIcon from "./icons/StarIcon";
-import { useCartStore } from "../store/cart";
-import QuantityControl from "./QuantityControl";
+import { Product } from "../../types";
+import StarIcon from "../icons/StarIcon";
+import { useCartStore } from "../../store/cart";
+import QuantityControl from "../ui/QuantityControl";
 import { useEffect, useRef } from "react";
 
 interface ProductCardProps {

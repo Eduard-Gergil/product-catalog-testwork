@@ -1,4 +1,4 @@
-import { useProductStore } from "../store/products";
+import { useProductStore } from "../../store/products";
 import CategoryButton from "./CategoryButton";
 
 export default function CategoryFilter() {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useDebounce } from "../hooks/useDebounce";
-import { useProductStore } from "../store/products";
+import { useDebounce } from "../../hooks/useDebounce";
+import { useProductStore } from "../../store/products";
 
 export default function PriceFilter() {
   const priceRange = useProductStore(state => state.priceRange)

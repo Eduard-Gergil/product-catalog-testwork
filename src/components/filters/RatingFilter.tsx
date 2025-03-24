@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { useProductStore } from "../store/products";
+import { useProductStore } from "../../store/products";
 
 export default function RatingFilter() {
   const ratingRange = useProductStore(state => state.ratingRange)

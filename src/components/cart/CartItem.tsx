@@ -1,6 +1,6 @@
-import { CartStore } from "../store/cart";
-import TrashIcon from "./icons/TrashIcon";
-import QuantityControl from "./QuantityControl";
+import { CartStore } from "../../store/cart";
+import TrashIcon from "../icons/TrashIcon";
+import QuantityControl from "../ui/QuantityControl";
 
 interface CartItemProps {
   item: {

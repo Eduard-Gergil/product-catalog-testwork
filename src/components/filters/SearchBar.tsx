@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useDebounce } from "../hooks/useDebounce";
-import { useProductStore } from "../store/products";
+import { useDebounce } from "../../hooks/useDebounce";
+import { useProductStore } from "../../store/products";
 
 export default function SearchBar() {
   const setSearchQuery = useProductStore((state) => state.setSearchQuery);
