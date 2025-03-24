@@ -8,7 +8,7 @@ export default function Header() {
         <NavLink to="/" className={({ isActive }) =>
           cn(
             "px-4 py-1 rounded text-lg font-semibold active:scale-95 transition",
-            { "px-12 bg-[#51fa7b] text-[#000]": isActive }
+            { "px-12 bg-primary text-[#000]": isActive }
           )}
         >
           Каталог
@@ -17,7 +17,7 @@ export default function Header() {
         <NavLink to="/cart" className={({ isActive }) =>
           cn(
             "px-4 py-1 rounded text-lg font-semibold active:scale-95 transition",
-            { "px-12 bg-[#51fa7b] text-[#000]": isActive }
+            { "px-12 bg-primary text-[#000]": isActive }
           )}
         >
           Корзина

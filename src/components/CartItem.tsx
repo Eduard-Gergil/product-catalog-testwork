@@ -1,5 +1,6 @@
 import { CartStore } from "../store/cart";
 import TrashIcon from "./icons/TrashIcon";
+import QuantityControl from "./QuantityControl";
 
 interface CartItemProps {
   item: {
@@ -17,12 +18,12 @@ interface CartItemProps {
 
 export default function CartItem({ item, increaseQuantity, decreaseQuantity, removeFromCart, setQuantity }: CartItemProps) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between flex-wrap gap-4">
       <div className="flex items-center space-x-2">
         <img
           src={item.image}
           alt={item.title}
-          className="w-24 h-24 object-cover rounded"
+          className="w-24 h-24 object-cover rounded flex-shrink-0"
         />
         <div className="text-left">
           <p className="text-lg font-medium">{item.title}</p>
@@ -31,19 +32,15 @@ export default function CartItem({ item, increaseQuantity, decreaseQuantity, rem
       </div>
 
       <div className="flex items-center space-x-2">
-        {/* Регулировка кол-ва товара */}
-        <button className="w-8 h-8 p-0 bg-[#ffffff0f] rounded" onClick={() => decreaseQuantity(item.id)}>-</button>
-        <input
-          type="number"
-          min={1}
-          value={item.quantity}
+        <QuantityControl
+          onIncrease={() => increaseQuantity(item.id)}
+          onDecrease={() => decreaseQuantity(item.id)}
+          quantity={item.quantity}
           onChange={(e) => setQuantity(item.id, +e.target.value)}
-          className="w-16 h-8 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-[#51fa7b]"
         />
-        <button className="w-8 h-8 p-0 bg-[#ffffff0f] rounded" onClick={() => increaseQuantity(item.id)}>+</button>
 
         {/* Кнопка удалить */}
-        <button className="w-8 h-8 p-0 bg-[#b7000067] rounded items-center justify-center flex" onClick={() => removeFromCart(item.id)}>
+        <button className="w-8 h-8 p-0 bg-red-900 hover:bg-opacity-70 rounded items-center justify-center flex" onClick={() => removeFromCart(item.id)}>
           <TrashIcon className=" w-6 h-6" />
         </button>
       </div>

@@ -45,13 +45,14 @@ export const useCartStore = create<CartStore>()(
             item.id === id ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity } : item
           )
       })),
-    setQuantity: (id, quantity) =>
+    setQuantity: (id, quantity) => {
       set((state) => ({
         cart: state.cart
           .map((item) =>
-            item.id === id ? { ...item, quantity: quantity } : item
+            item.id === id ? { ...item, quantity: quantity < 1 ? 1 : quantity } : item
           )
-      })),
+      }))
+    }
   }), {
     name: "cart",
   }));

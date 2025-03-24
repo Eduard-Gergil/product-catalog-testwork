@@ -32,7 +32,7 @@ export default function PriceFilter() {
           value={inputValue[0] === 0 ? "" : inputValue[0]}
           min={0}
           onChange={(e) => updateLowerBound(+e.target.value)}
-          className="w-20 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-[#51fa7b]"
+          className="w-20 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-primary"
         />
         <span>-</span>
         <input
@@ -41,7 +41,7 @@ export default function PriceFilter() {
           value={inputValue[1] === 0 ? "" : inputValue[1]}
           min={0}
           onChange={(e) => updateUpperBound(+e.target.value)}
-          className="w-20 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-[#51fa7b]"
+          className="w-20 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-primary"
         />
       </div>
     </div>
