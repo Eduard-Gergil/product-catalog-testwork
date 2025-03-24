@@ -12,6 +12,7 @@ export default function QuantityControl({ onIncrease, onDecrease, quantity, onCh
       <input
         type="number"
         min={1}
+        max={99}
         value={quantity}
         onChange={onChange}
         className="w-16 h-8 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus-visible:border-primary"

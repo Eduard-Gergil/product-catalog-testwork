@@ -9,13 +9,13 @@ export type CartStore = {
   addToCart: (product: Product) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  setQuantity: (id: number, quantity: number) => void;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
-  setQuantity: (id: number, quantity: number) => void;
 };
 
 export const useCartStore = create<CartStore>()(
-  persist((set) => ({
+  persist((set, get) => ({
     cart: [],
     addToCart: (product) =>
       set((state) => {
@@ -32,27 +32,19 @@ export const useCartStore = create<CartStore>()(
     removeFromCart: (id) =>
       set((state) => ({ cart: state.cart.filter((item) => item.id !== id) })),
     clearCart: () => set({ cart: [] }),
-    increaseQuantity: (id) =>
-      set((state) => ({
-        cart: state.cart.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        ),
-      })),
-    decreaseQuantity: (id) =>
-      set((state) => ({
-        cart: state.cart
-          .map((item) =>
-            item.id === id ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity } : item
-          )
-      })),
     setQuantity: (id, quantity) => {
+      const newQuantity = quantity < 1 ? 1 : quantity > 99 ? 99 : quantity;
       set((state) => ({
         cart: state.cart
           .map((item) =>
-            item.id === id ? { ...item, quantity: quantity < 1 ? 1 : quantity } : item
+            item.id === id ? { ...item, quantity: newQuantity } : item
           )
       }))
-    }
+    },
+    increaseQuantity: (id) =>
+      get().setQuantity(id, get().cart.find((item) => item.id === id)!.quantity + 1),
+    decreaseQuantity: (id) =>
+      get().setQuantity(id, get().cart.find((item) => item.id === id)!.quantity - 1),
   }), {
     name: "cart",
   }));
