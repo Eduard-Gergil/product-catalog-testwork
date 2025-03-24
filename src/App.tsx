@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { Routes, Route } from 'react-router'
 import './App.css'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
@@ -6,7 +6,7 @@ import Header from './components/Header'
 
 function App() {
   return (
-    <BrowserRouter>
+    <div className='relative'>
       <Header />
 
       <div className='px-4'>
@@ -17,8 +17,7 @@ function App() {
           </Routes>
         </div>
       </div>
-
-    </BrowserRouter>
+    </div>
   )
 }
 
