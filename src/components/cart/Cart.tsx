@@ -7,12 +7,16 @@ export default function Cart() {
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   return (
     <div className="w-full flex items-start lg:flex-row flex-col lg:gap-8 lg:space-y-0 space-y-8">
-      <div className={cn("lg:w-2/3 w-full", { "opacity-0": cart.length === 0 })}>
-        <div className="space-y-4 bg-black p-4 rounded">
-          {cart.map((item) => (
-            <CartItem key={item.id} item={item} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} removeFromCart={removeFromCart} setQuantity={setQuantity} />
-          ))}
-        </div>
+      <div className={cn("lg:w-2/3 w-full")}>
+        {cart.length === 0 ? (
+          <p className="text-center text-gray-500">Корзина пуста</p>
+        ) : (
+          <div className="space-y-4 bg-black p-4 rounded">
+            {cart.map((item) => (
+              <CartItem key={item.id} item={item} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} removeFromCart={removeFromCart} setQuantity={setQuantity} />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="lg:w-1/3 w-full bg-black p-4 rounded">
