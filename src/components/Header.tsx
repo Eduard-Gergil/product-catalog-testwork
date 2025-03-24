@@ -3,7 +3,7 @@ import cn from "classnames";
 
 export default function Header() {
   return (
-    <header className="px-4 py-4 bg-[#000000] flex justify-end">
+    <header className="px-4 py-4 bg-[#000000] flex justify-end sticky top-0 z-50">
       <nav className="flex space-x-4 max-w-7xl w-full mx-auto">
         <NavLink to="/" className={({ isActive }) =>
           cn(
