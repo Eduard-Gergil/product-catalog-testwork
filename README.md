@@ -1,54 +1,40 @@
-# React + TypeScript + Vite
+# Проект: Green Catalog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
+Этот проект представляет собой фронтенд-приложение, созданное с использованием Vite, React и TypeScript. Разработан в рамках тестового задания и демонстрирует ключевые навыки работы с современным стеком фронтенд-разработки.
 
-Currently, two official plugins are available:
+## Технологии
+- **Vite** — быстрый инструмент для сборки проекта
+- **React** — библиотека для создания пользовательских интерфейсов
+- **TypeScript** — язык программирования, расширяющий JavaScript статической типизацией
+- **Tailwind CSS** — утилитарный CSS-фреймворк для стилизации
+- **Zustand** — легковесная библиотека для управления состоянием
+- **React Router** — библиотека для маршрутизации
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Установка и запуск
+1. Клонируйте репозиторий:
+   ```sh
+   git clone https://github.com/Eduard-Gergil/product-catalog-testwork.git
+   cd product-catalog-testwork
+   ```
 
-## Expanding the ESLint configuration
+2. Установите зависимости:
+   ```sh
+   npm install
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. Запустите проект в режиме разработки:
+   ```sh
+   npm run dev
+   ```
+   Приложение будет доступно по адресу `http://localhost:5173/`.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+4. Сборка для продакшена:
+   ```sh
+   npm run build
+   ```
+   Все файлы будут собраны в папку `dist`.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Развертывание
+Каждое изменение автоматически применяется, и новая версия проекта разворачивается на Netlify:
+🔗 [Деплой на Netlify](https://astonishing-wisp-003c4e.netlify.app/)
