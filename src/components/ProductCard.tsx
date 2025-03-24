@@ -1,19 +1,20 @@
 import cn from "classnames";
-import { CartStore, Product } from "../types";
+import { Product } from "../types";
 import StarIcon from "./icons/StarIcon";
+import { useCartStore } from "../store/cart";
 
 interface ProductCardProps {
   product: Product;
-  addToCart: CartStore["addToCart"];
-  cart: CartStore["cart"];
-  decreaseQuantity: CartStore["decreaseQuantity"];
-  increaseQuantity: CartStore["increaseQuantity"];
-  setQuantity: CartStore["setQuantity"];
-  removeFromCart: CartStore["removeFromCart"];
 }
 
-const ProductCard = ({ product, addToCart, cart, decreaseQuantity, increaseQuantity, setQuantity, removeFromCart }: ProductCardProps) => {
-  const productInCart = cart.find((item) => item.id === product.id)
+const ProductCard = ({ product }: ProductCardProps) => {
+  const productInCart = useCartStore(state => state.cart.find((item) => item.id === product.id))
+  const addToCart = useCartStore(state => state.addToCart)
+  const removeFromCart = useCartStore(state => state.removeFromCart)
+  const increaseQuantity = useCartStore(state => state.increaseQuantity)
+  const decreaseQuantity = useCartStore(state => state.decreaseQuantity)
+  const setQuantity = useCartStore(state => state.setQuantity)
+
   return (
     <div className={cn("group relative rounded-lg shadow-md p-4 flex flex-col bg-black hover:pb-16 hover:-mb-16 hover:z-10", { "hover:pb-28 hover:-mb-28": productInCart })}>
       <img
@@ -57,7 +58,6 @@ const ProductCard = ({ product, addToCart, cart, decreaseQuantity, increaseQuant
             Добавить в корзину
           </button>
         )}
-
       </div>
     </div>
   );

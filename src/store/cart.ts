@@ -44,7 +44,6 @@ export const useCartStore = create<CartStore>()(
           .map((item) =>
             item.id === id ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity } : item
           )
-        // .filter((item) => item.quantity > 0),
       })),
     setQuantity: (id, quantity) =>
       set((state) => ({
@@ -52,8 +51,7 @@ export const useCartStore = create<CartStore>()(
           .map((item) =>
             item.id === id ? { ...item, quantity: quantity } : item
           )
-        // .filter((item) => item.quantity > 0),
       })),
   }), {
-    name: "cart", // unique name
+    name: "cart",
   }));

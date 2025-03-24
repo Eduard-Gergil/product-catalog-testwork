@@ -1,12 +1,27 @@
-import { ProductStore } from "../store/products";
+import { useState, useEffect } from "react";
+import { useDebounce } from "../hooks/useDebounce";
+import { useProductStore } from "../store/products";
 
-interface PriceFilterProps {
-  priceRange: ProductStore["priceRange"];
-  setPriceRange: ProductStore["setPriceRange"];
-}
+export default function PriceFilter() {
+  const priceRange = useProductStore(state => state.priceRange)
+  const setPriceRange = useProductStore(state => state.setPriceRange)
 
-export default function PriceFilter({ priceRange, setPriceRange }: PriceFilterProps) {
-  
+  const [inputValue, setInputValue] = useState(priceRange);
+  const updateLowerBound = (value: number) => {
+    if (value > inputValue[1]) return;
+    setInputValue([value, inputValue[1]]);
+  }
+  const updateUpperBound = (value: number) => {
+    if (value < inputValue[0]) return;
+    setInputValue([inputValue[0], value]);
+  }
+
+  const debouncedPriceRange = useDebounce(inputValue, 700);
+
+  useEffect(() => {
+    setPriceRange(debouncedPriceRange);
+  }, [debouncedPriceRange]);
+
   return (
     <div className="mb-4">
       <h3 className="font-semibold mb-2 text-left text-gray-200">Цена</h3>
@@ -14,18 +29,18 @@ export default function PriceFilter({ priceRange, setPriceRange }: PriceFilterPr
         <input
           type="number"
           placeholder="От"
-          value={priceRange[0] === 0 ? "" : priceRange[0]}
+          value={inputValue[0] === 0 ? "" : inputValue[0]}
           min={0}
-          onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])}
+          onChange={(e) => updateLowerBound(+e.target.value)}
           className="w-20 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-[#51fa7b]"
         />
         <span>-</span>
         <input
           type="number"
           placeholder="До"
-          value={priceRange[1] === 0 ? "" : priceRange[1]}
+          value={inputValue[1] === 0 ? "" : inputValue[1]}
           min={0}
-          onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
+          onChange={(e) => updateUpperBound(+e.target.value)}
           className="w-20 px-3 py-0 border rounded-lg text-gray-200 border-[#747474]  outline-none bg-black focus:border-blue-500 focus-visible:border-[#51fa7b]"
         />
       </div>

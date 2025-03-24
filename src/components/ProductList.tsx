@@ -1,5 +1,4 @@
 import SearchBar from "../components/SearchBar";
-import { useCartStore } from "../store/cart";
 import { Product } from "../types";
 import Filters from "./Filters";
 import ProductCard from "./ProductCard";
@@ -9,9 +8,9 @@ interface ProductListProps {
   loading: boolean
 }
 
-export default function ProductList({ products, loading }: ProductListProps) {
-  const { addToCart, cart, increaseQuantity, decreaseQuantity, setQuantity, removeFromCart } = useCartStore();
-
+export default function ProductList(
+  { products, loading }: ProductListProps
+) {
   return (
     <div className="flex flex-col space-y-6">
       <SearchBar />
@@ -24,12 +23,6 @@ export default function ProductList({ products, loading }: ProductListProps) {
             <ProductCard
               key={index}
               product={product}
-              addToCart={addToCart}
-              cart={cart}
-              increaseQuantity={increaseQuantity}
-              decreaseQuantity={decreaseQuantity}
-              setQuantity={setQuantity}
-              removeFromCart={removeFromCart}
             />
           )}
         </div>

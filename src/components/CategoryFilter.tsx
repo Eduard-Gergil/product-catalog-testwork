@@ -1,13 +1,12 @@
 import cn from "classnames";
+import { useProductStore } from "../store/products";
 
-interface CategoryFilterProps {
-  currectCategories: string[];
-  selectAllCategories: () => void;
-  toggleCurrentCategory: (category: string) => void;
-  categories: string[];
-}
+export default function CategoryFilter() {
+  const categories = useProductStore(state => state.categories)
+  const currectCategories = useProductStore(state => state.currectCategories)
+  const toggleCurrentCategory = useProductStore(state => state.toggleCurrentCategory)
+  const selectAllCategories = useProductStore(state => state.selectAllCategories)  
 
-export default function CategoryFilter({ currectCategories, selectAllCategories, toggleCurrentCategory, categories }: CategoryFilterProps) {
   return (
     <div className="mb-4">
       <h3 className="font-semibold mb-2 text-left text-gray-3200">Категория</h3>

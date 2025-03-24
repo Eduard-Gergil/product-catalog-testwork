@@ -3,10 +3,11 @@ import { Product } from "../types";
 
 export type ProductStore = {
   products: Product[];
+  loading: boolean;
+  error: string | null;
+  fetchProducts: () => void;
+
   categories: string[];
-
-  setProducts: (products: Product[]) => void;
-
   currectCategories: string[];
   selectAllCategories: () => void;
   toggleCurrentCategory: (category: string) => void;
@@ -23,9 +24,19 @@ export type ProductStore = {
 
 export const useProductStore = create<ProductStore>((set) => ({
   products: [],
-  setProducts: (products) => {
-    const uniqueCategories = Array.from(new Set(products.map((p) => p.category)));
-    set({ products, categories: uniqueCategories });
+  loading: false,
+  error: null,
+  fetchProducts: async () => {
+    set({ loading: true, error: null });
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        set({ products: data, loading: false });
+      })
+      .catch((error) => {
+        console.error("Ошибка загрузки товаров:", error);
+        set({ error: 'Ошибка загрузки товаров', loading: false });
+      });
   },
 
   categories: [],
@@ -49,3 +60,11 @@ export const useProductStore = create<ProductStore>((set) => ({
   searchQuery: "",
   setSearchQuery: (query) => set({ searchQuery: query }),
 }));
+
+
+useProductStore.subscribe(
+  (state) => {
+    const uniqueCategories = Array.from(new Set(state.products.map((p) => p.category)));
+    state.categories = uniqueCategories;
+  }
+);

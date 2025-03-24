@@ -1,11 +1,10 @@
 import cn from "classnames";
+import { useProductStore } from "../store/products";
 
-interface RatingFilterProps {
-  ratingRange: [number, number];
-  setRatingRange: (range: [number, number]) => void;
-}
+export default function RatingFilter() {
+  const ratingRange = useProductStore(state => state.ratingRange)
+  const setRatingRange = useProductStore(state => state.setRatingRange)
 
-export default function RatingFilter({ ratingRange, setRatingRange }: RatingFilterProps) {
   return (
     <div>
       <h3 className="font-semibold mb-2">Рейтинг</h3>
@@ -19,9 +18,6 @@ export default function RatingFilter({ ratingRange, setRatingRange }: RatingFilt
             {num === 0 ? "Все" : `${num}★ и выше`}
           </button>
         ))}
-        {/* <button className="text-[#51fa7b] underline">4★ и выше</button>
-      <button className="text-gray-400">3★ и выше</button>
-      <button className="text-gray-400">2★ и выше</button> */}
       </div>
     </div>
   );

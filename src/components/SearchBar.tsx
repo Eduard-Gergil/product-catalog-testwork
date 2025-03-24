@@ -3,7 +3,7 @@ import { useDebounce } from "../hooks/useDebounce";
 import { useProductStore } from "../store/products";
 
 export default function SearchBar() {
-  const { setSearchQuery } = useProductStore()
+  const setSearchQuery = useProductStore((state) => state.setSearchQuery);
   const [inputValue, setInputValue] = useState("");
   const debouncedSearchQuery = useDebounce(inputValue, 700);
 
