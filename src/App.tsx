@@ -1,8 +1,10 @@
 import { Routes, Route } from 'react-router'
 import './App.css'
-import Home from './pages/Home'
-import Cart from './pages/Cart'
 import Header from './components/Header'
+import { lazy } from 'react';
+
+const Home = lazy(() => import("./pages/Home"));
+const Cart = lazy(() => import("./pages/Cart"));
 
 function App() {
   return (
