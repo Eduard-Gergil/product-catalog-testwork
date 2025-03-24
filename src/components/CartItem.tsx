@@ -18,7 +18,7 @@ interface CartItemProps {
 
 export default function CartItem({ item, increaseQuantity, decreaseQuantity, removeFromCart, setQuantity }: CartItemProps) {
   return (
-    <div className="flex items-center justify-between flex-wrap gap-4">
+    <div className="flex items-center justify-between lg:flex-nowrap flex-wrap gap-4">
       <div className="flex items-center space-x-2">
         <img
           src={item.image}
